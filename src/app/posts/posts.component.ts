@@ -27,8 +27,7 @@ export interface Post {
                       text-align: center;
                       margin: 0.05%; }
             mat-header-cell { display: none }
-            mat-paginator { margin-top: 200px; }
-            mat-table { height: 500px; }`]
+            mat-table { height: 100%; width: 100%; }`]
 })
 export class PostsComponent implements OnInit {
     posts = [];
@@ -48,10 +47,6 @@ export class PostsComponent implements OnInit {
     }
 
     onRowClicked(obj: Post) {
-        console.log('Id: ' + obj.id);
-        console.log('Title: ' + obj.title);
-        console.log('Content: ' + obj.content);
-        console.log('Writer Id: ' + obj.writerId);
         this.router.navigate(['/view/' + obj.id]);
     }
 
