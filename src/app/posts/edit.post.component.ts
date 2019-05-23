@@ -23,7 +23,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
                  </div>
                </div>
                <div class="form-group">
-                 <button>Post</button>
+                 <button class="btn btn-primary">Post</button>
                </div>
              </form>
              <p *ngIf="submitted && successfulPost">Edited successfully!</p>

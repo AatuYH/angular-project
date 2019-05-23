@@ -5,34 +5,36 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'login',
-  template: `<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-               <div class="form-group">
-                 <label for="username">Username</label>
-                 <input type="text" formControlName="username" class="form-control"
-                  [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
-                 <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                   <div *ngIf="f.username.errors.required">Username is required</div>
+  template: `<div class="container">
+               <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                 <div class="form-group">
+                   <label for="username">Username</label>
+                   <input type="text" formControlName="username" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                   <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                     <div *ngIf="f.username.errors.required">Username is required</div>
+                   </div>
                  </div>
-               </div>
-               <div class="form-group">
-                 <label for="password">Password</label>
-                 <input type="password" formControlName="password" class="form-control"
-                  [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
-                 <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                   <div *ngIf="f.password.errors.required">Password is required</div>
+                 <div class="form-group">
+                   <label for="password">Password</label>
+                   <input type="password" formControlName="password" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                   <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                     <div *ngIf="f.password.errors.required">Password is required</div>
+                   </div>
                  </div>
-               </div>
-               <div class="form-group">
-                 <label for="checkbox">Stay logged in</label>
-                 <input type="checkbox" formControlName="checkbox" class="form-control">
-               </div>
-               <div class="form-group">
-                 <button>Login</button>
-               </div>
-               <div *ngIf="invalidLogin && submitted">Invalid username or password</div>
-             </form>
-             <p>Don't have an account? <a routerLink="/register">Sign up here</a></p>`,
-  styles: []
+                 <div class="form-group">
+                   <label for="checkbox">Stay logged in</label>
+                   <input type="checkbox" formControlName="checkbox" class="form-control">
+                 </div>
+                 <div class="form-group">
+                   <button class="btn btn-primary">Login</button>
+                 </div>
+                 <div *ngIf="invalidLogin && submitted">Invalid username or password</div>
+               </form>
+               <p>Don't have an account? <a routerLink="/register">Sign up here</a></p>
+             </div>`,
+  styles: ['.container { width: 30%; margin-left: auto; margin-right: auto; }']
 })
 export class LoginComponent implements OnInit {
     loginForm: FormGroup;

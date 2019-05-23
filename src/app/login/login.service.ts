@@ -5,8 +5,9 @@ import { HttpClient } from '@angular/common/http';
 export class LoginService {
     constructor(private http: HttpClient) { }
     authenticateUser(username: string, password: string, callBackFunction: (result) => void) {
-        this.http.get('http://localhost:3000/users/' + username).subscribe(jsonObject => {
-            if (jsonObject.length > 0) {
+        this.http.get('https://ang-backend.herokuapp.com/users/' + username).subscribe(jsonObject => {
+            console.log(jsonObject);
+            if (jsonObject[0] !== undefined) {
                 if (password === jsonObject[0].userpass) {
                     callBackFunction({id: jsonObject[0].id, correctPassword: true});
                 } else {
@@ -18,17 +19,17 @@ export class LoginService {
         });
     }
     getUserData(username: string, callBackFunction: (result) => void) {
-        this.http.get('http://localhost:3000/users/' + username).subscribe(jsonObject => {
+        this.http.get('https://ang-backend.herokuapp.com/users/' + username).subscribe(jsonObject => {
             callBackFunction(jsonObject);
         });
     }
     createNewUser(userData: object, callBackFunction: (result) => void) {
-        this.http.post('http://localhost:3000/users/', userData).subscribe(result => {
+        this.http.post('https://ang-backend.herokuapp.com/users/', userData).subscribe(result => {
             callBackFunction(result);
         });
     }
     getUsers(callBackFunction: (result) => void) {
-        this.http.get('http://localhost:3000/users/').subscribe(result => {
+        this.http.get('https://ang-backend.herokuapp.com/users/').subscribe(result => {
             callBackFunction(result);
         });
     }

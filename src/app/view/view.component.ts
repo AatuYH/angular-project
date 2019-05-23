@@ -8,7 +8,7 @@ import { ActivatedRoute, Params } from '@angular/router';
   template: `<div class="container">
                <div *ngIf="!notFound">
                  <h2>{{post[0].title}}</h2>
-                 <p>{{post[0].content}}</p>
+                 <p id="content">{{post[0].content}}</p>
                  <p>Writer: <a routerLink="/users/{{writerName}}">{{writerName}}</a></p>
                  <button routerLink="/view/{{id}}/edit" *ngIf="isWriter">Edit</button>
                </div>
@@ -16,10 +16,12 @@ import { ActivatedRoute, Params } from '@angular/router';
                  <p>The post you are trying to view does not exist</p>
                </div>
              </div>`,
-  styles: ['.container { width: 90%, margin-left: auto; margin-right: auto; }']
+  styles: [`.container { width: 90%, margin-left: auto; margin-right: auto; }
+            h2 { text-align: center; }
+            #content { white-space: pre-wrap; }`]
 })
 export class ViewComponent implements OnInit {
-    post = {};
+    post;
     dataReady = false;
     notFound = true;
     id: number;

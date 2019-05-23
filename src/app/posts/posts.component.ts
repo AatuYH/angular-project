@@ -11,23 +11,29 @@ export interface Post {
 
 @Component({
   selector: 'posts',
-  template: `<mat-table [dataSource]="posts">
-               <ng-container matColumnDef="titleColumn">
-                 <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
-                 <mat-cell *matCellDef="let post">{{post.title}}</mat-cell>
-               </ng-container>
-               <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-               <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClicked(row)"></mat-row>
-             </mat-table>
-             <button [hidden]="page <= 1" (click)="moveTo('previous')">Back</button>
-             <button [hidden]="page * 12 >= postCount" (click)="moveTo('next')">More posts</button>`,
-  styles: [`mat-row { width: 33%;
-                      float: left;
-                      border: 1px solid black;
-                      text-align: center;
-                      margin: 0.05%; }
-            mat-header-cell { display: none }
-            mat-table { height: 100%; width: 100%; }`]
+  template: `<div class="table-container">
+               <mat-table [dataSource]="posts" class="table">
+                 <ng-container matColumnDef="titleColumn">
+                   <mat-header-cell *matHeaderCellDef> Posts </mat-header-cell>
+                   <mat-cell *matCellDef="let post">{{post.title}}</mat-cell>
+                 </ng-container>
+                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                 <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClicked(row)"></mat-row>
+               </mat-table>
+             </div>
+             <button id="left" class="btn btn-light" [hidden]="page <= 1" (click)="moveTo('previous')">Back</button>
+             <button id="right" class="btn btn-light" [hidden]="page * 12 >= postCount" (click)="moveTo('next')">More posts</button>`,
+  styles: [`mat-row {
+                width: 33%;
+                height: 17vh;
+                float: left;
+                border: 1px solid black;
+                text-align: center;
+                margin: 0.16666667%;
+            }
+            #right { float: right; }
+            #left { display: block; float: left; white-space: pre; }
+            .btn { margin: 5px;}`]
 })
 export class PostsComponent implements OnInit {
     posts = [];

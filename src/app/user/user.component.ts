@@ -5,7 +5,7 @@ import { PostsService } from '../posts.service';
 
 @Component({
   selector: 'user',
-  template: `<div [ngSwitch]="userExists" *ngIf="dataFetched">
+  template: `<div class="container" [ngSwitch]="userExists" *ngIf="dataFetched">
                <div *ngSwitchCase="true">
                  <p>Name: {{username}}</p>
                  <p>Created: {{this.created}}</p>
@@ -20,7 +20,8 @@ import { PostsService } from '../posts.service';
                </div>
                <p *ngSwitchCase="false">Unfortúnately, there are no users by that name.</p>
              </div>`,
-  styles: [`mat-table { width: 90%; margin-left: auto; margin-right: auto; }`]
+  styles: [`mat-table { margin-left: auto; margin-right: auto; }
+            container { width: 30%; margin-left: auto; margin-right: auto; }`]
 })
 export class UserComponent implements OnInit {
     userId: number;

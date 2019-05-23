@@ -8,6 +8,7 @@ import { MatButtonModule, MatTableModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app.routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './not.found.component';
@@ -44,7 +45,8 @@ import { RegisterComponent } from './login/register.component';
   ],
   providers: [
     PostsService,
-    LoginService
+    LoginService,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })
